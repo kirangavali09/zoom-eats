@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
+import Navbar from './components/Navbar'
+import Search from './components/Search'
 
 function App() {
 
   return (
     <>
-      <div>
-          <h1>ZoomEats</h1>
-      </div>
+      <Navbar />
+      <Search />
     </>
   )
 }
