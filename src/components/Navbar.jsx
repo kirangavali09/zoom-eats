@@ -1,17 +1,17 @@
-import Logo from './../assets/logo.png';
+import Logo from './../assets/logo.svg';
 
 const Navbar = () => {
 
     return (
-        <div className="w-full h-12 sm:h-18  px-4 sm:px-12 lg:px-24 py-2 bg-red-900 flex justify-between">
-            <div className="w-32 sm:w-48">
+        <div className="w-full h-12 sm:h-20 px-4 sm:px-12 bg-zinc-100 lg:px-32 pt-2 flex justify-between shadow-lg">
+            <div className="w-32 sm:w-56">
                 <img src={Logo} className='w-full h-full object-cover'/>
             </div>
             <div className='flex gap-4 items-center max-sm:hidden'>
-                <h4 className='font-semibold text-xl text-white'>Home</h4>
-                <h4 className='font-semibold text-xl text-white'>About</h4>
-                <h4 className='font-semibold text-xl text-white'>Contact Us</h4>
-                <h4 className='font-semibold text-xl text-white'>Cart</h4>
+                <h4 className='font-semibold text-xl text-zinc-800'>Home</h4>
+                <h4 className='font-semibold text-xl text-zinc-800'>About</h4>
+                <h4 className='font-semibold text-xl text-zinc-800'>Contact Us</h4>
+                <h4 className='font-semibold text-xl text-zinc-800'>Cart</h4>
             </div>
         </div>
     )
