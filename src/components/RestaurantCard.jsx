@@ -4,7 +4,7 @@ import { IMAGE_BASE_URL } from "./../utils/constants";
 
 const RestaurantCard = (props) => {
     const { name, avgRating, cuisines, sla, areaName, cloudinaryImageId} = props.restaurantData;
-console.log(props)
+
     return (
         <div className="w-72 p-4  rounded-lg shadow-xl max-w-sm max-lg:mx-auto">
             <div className="w-64 h-44">
