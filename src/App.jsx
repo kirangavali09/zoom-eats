@@ -2,6 +2,7 @@ import Navbar from './components/Navbar'
 import Search from './components/Search'
 import RestaurantContainer from './components/RestaurantContainer'
 import { useEffect, useState } from 'react'
+import { RESTAURANT_API_URL } from './utils/constants'
 
 function App() {
   const [RestaurantData, setRestaurantData] = useState([]);
@@ -11,7 +12,7 @@ function App() {
   },[])
 
   const fetchRestaurants = async () => {
-    let restaurants = await fetch(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`);
+    let restaurants = await fetch(RESTAURANT_API_URL);
 
     let restaurantJson = await restaurants.json();
     setRestaurantData(restaurantJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
