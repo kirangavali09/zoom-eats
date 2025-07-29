@@ -2,7 +2,7 @@
 const Shimmer = () => {
 
     return (
-        <div className="w-full px-4 sm:px-12 lg:px-32 flex flex-wrap justify-start gap-10 mt-4">
+        <div className="w-full px-4 sm:px-12 lg:px-32 flex flex-wrap justify-start gap-10 lg:gap-13 mt-4">
             {Array.from({ length: 15 }).map((_, index) => (
                 <div key={index} className="w-72 p-4  rounded-lg shadow-xl max-w-sm max-lg:mx-auto cursor-pointer animate-pulse">
                     <div className="w-64 h-44 bg-gray-300 rounded-md shimmer"></div>

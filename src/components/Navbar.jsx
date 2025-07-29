@@ -8,10 +8,10 @@ const Navbar = () => {
                 <img src={Logo} className='w-full h-full object-cover'/>
             </div>
             <div className='flex gap-4 items-center max-sm:hidden'>
-                <h4 className='font-semibold text-xl text-zinc-800'>Home</h4>
-                <h4 className='font-semibold text-xl text-zinc-800'>About</h4>
-                <h4 className='font-semibold text-xl text-zinc-800'>Contact Us</h4>
-                <h4 className='font-semibold text-xl text-zinc-800'>Cart</h4>
+                <h4 className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>Home</h4>
+                <h4 className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>About</h4>
+                <h4 className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>Contact Us</h4>
+                <h4 className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>Cart</h4>
             </div>
         </div>
     )
