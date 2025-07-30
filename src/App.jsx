@@ -3,9 +3,11 @@ import Search from './components/Search'
 import RestaurantContainer from './components/RestaurantContainer'
 import { useEffect, useState } from 'react'
 import { RESTAURANT_API_URL } from './utils/constants'
+import Shimmer from './components/Shimmer'
 
 function App() {
   const [RestaurantData, setRestaurantData] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   useEffect(()=>{
     fetchRestaurants();
@@ -16,17 +18,24 @@ function App() {
 
     let restaurantJson = await restaurants.json();
     setRestaurantData(restaurantJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurants(restaurantJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
 
   const handleFilter = (filteredData) => {
-    setRestaurantData(filteredData);
+    setFilteredRestaurants(filteredData);
   }
 
   return (
     <>
       <Navbar />
       <Search RestaurantData={RestaurantData} handleFilter={handleFilter} />
-      <RestaurantContainer RestaurantData={RestaurantData} />
+      { RestaurantData == undefined || RestaurantData?.length === 0 ? 
+        <Shimmer /> : 
+        <RestaurantContainer RestaurantData={filteredRestaurants} />
+      }
+
+
+      
     </>
   )
 }
