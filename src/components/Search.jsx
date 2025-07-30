@@ -23,13 +23,13 @@ const Search = ({ RestaurantData, handleFilter }) => {
     return (
         <div className="w-full px-4 sm:px-12 lg:px-32 py-4 flex justify-between flex-wrap gap-2">
             <div className="relative">
-                <input ref={searchInput} type="text" className="px-2 sm:px-6 py-1 sm:py-2 max-sm:w-48 bg-white border-1 mr-6 rounded-lg" onKeyDown={(e) => e.key === 'Enter' ? filterSearch() : ''} onChange={(e) => searchInput.current.value.length > 0 ? setSearchIcon(1) : setSearchIcon(0) }/>
-                <CiSearch onClick={() => filterSearch() }className={`${searchIcon ? "hidden" : "" } text-3xl absolute top-1 right-8 bg-transparent`} />
+                <input ref={searchInput} type="text" className="px-2 sm:px-6 py-2 max-sm:w-full bg-white border-1 mx-auto rounded-lg" onKeyDown={(e) => e.key === 'Enter' ? filterSearch() : ''} onChange={(e) => searchInput.current.value.length > 0 ? setSearchIcon(1) : setSearchIcon(0) }/>
+                <CiSearch onClick={() => filterSearch() }className={`${searchIcon ? "hidden" : "" } text-3xl absolute top-1 right-2 bg-transparent`} />
                 <RxCross2 onClick={() => {
                     searchInput.current.value = null;
                     filterSearch();
                     setSearchIcon(0);
-                }} className={`${searchIcon ? "" : "hidden" } text-2xl absolute top-2 right-8 bg-transparent`} />
+                }} className={`${searchIcon ? "" : "hidden" } text-2xl absolute top-2 right-2 bg-transparent`} />
             </div>
 
             <div>
