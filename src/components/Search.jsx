@@ -17,7 +17,7 @@ const Search = ({ RestaurantData, handleFilter }) => {
         const filteredResults = RestaurantData.filter((res)=> {
             return res.info.name.toLocaleLowerCase().includes(searchInput.current.value.toLocaleLowerCase())
         })
-        handleFilter(filteredResults);
+        handleFilter(filteredResults, searchInput.current.value);
     }
 
     return (
