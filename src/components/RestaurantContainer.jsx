@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { RESTAURANT_API_URL } from './../utils/constants'
 import Shimmer from './Shimmer'
 import Search from './Search'
+import { Link } from "react-router-dom";
 
 
 const RestaurantContainer = () => {  
@@ -26,6 +27,7 @@ const RestaurantContainer = () => {
         setFilteredRestaurants(filteredData);
         setSearchQuery(searchQuery)
     }  
+    console.log(RestaurantData);
 
     return (
         <>
@@ -39,31 +41,18 @@ const RestaurantContainer = () => {
             : (
                 <div className="w-full px-4 sm:px-12 lg:px-32 flex flex-wrap justify-start gap-10 mt-4">
                 {filteredRestaurants.map((restaurant) => (
-                    <RestaurantCard
-                    key={restaurant.info.id}
-                    restaurantData={restaurant.info}
-                    />
+                    <Link to={"/restaurant/"+restaurant.info.id} key={restaurant.info.id}>
+                        <RestaurantCard
+                        key={restaurant.info.id}
+                        restaurantData={restaurant.info}
+                        />
+                    </Link>
                 ))}
                 </div>
             )};
 
         </>
     )
-
-    return RestaurantData == undefined || RestaurantData?.length === 0 ? (
-        <div className="w-full px-4 sm:px-12 lg:px-32 flex flex-wrap justify-start gap-10 mt-4">
-            No Restaurants Found
-        </div>
-    ) : (
-        <div className="w-full px-4 sm:px-12 lg:px-32 flex flex-wrap justify-start gap-10 mt-4">
-        {RestaurantData.map((restaurant) => (
-            <RestaurantCard
-            key={restaurant.info.id}
-            restaurantData={restaurant.info}
-            />
-        ))}
-        </div>
-    );
 };
 
 export default RestaurantContainer;

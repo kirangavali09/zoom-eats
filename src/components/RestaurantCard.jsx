@@ -6,12 +6,12 @@ const RestaurantCard = (props) => {
     const { name, avgRating, cuisines, sla, areaName, cloudinaryImageId} = props.restaurantData;
 
     return (
-        <div className="w-full md:w-72 p-4  rounded-lg shadow-xl max-w-sm max-lg:mx-auto">
+        <div className="w-full md:w-72 p-4 pb-8 rounded-lg shadow-xl max-w-sm max-lg:mx-auto">
             <div className="w-full md:w-64 h-60 lg:h-44">
                 <img src={IMAGE_BASE_URL + cloudinaryImageId} className="w-full h-full object-cover rounded-md"/>
             </div>
             <div className="content mt-4">
-                <h2 className="text-lg font-semibold line-clamp-2">{name}</h2>
+                <h2 className="text-lg font-semibold line-clamp-1">{name}</h2>
                 <div className="flex gap-2">
                     <span className="flex items-center gap-2 font-semibold">
                         <FaStar className="bg-green-600 text-white text-xl rounded-full p-1" /> <span>{avgRating}</span>
