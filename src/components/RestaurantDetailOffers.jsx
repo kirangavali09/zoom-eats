@@ -12,7 +12,7 @@ const RestaurantDetailOffers = ({offers}) => {
                 Deals for you
             </div>
             <Swiper
-                slidesPerView={2.5}
+                slidesPerView={navigator.userAgentData.mobile ? 1.2 : 2.5}
                 spaceBetween={20}
                 freeMode={true}
                 modules={[FreeMode,]}

@@ -23,7 +23,7 @@ const RestaurantDetail = () => {
     if (restaurantData.length == 0) return  <Shimmer />;
 
     return (
-        <div className="w-2/5 mx-auto my-10">
+        <div className="w-[95%] sm:w-2/5 mx-auto my-10">
             <RestaurantDetailHero name={restaurantData?.data?.cards[0]?.card?.card?.text} restaurantData={restaurantData?.data?.cards[2]?.card?.card?.info} />
 
             <RestaurantDetailOffers offers={restaurantData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers}/>

@@ -10,7 +10,7 @@ const RestaurantDetailHero = (props) => {
         </div>
         <div className="w-full bg-linear-to-t from-gray-300 via-gray-200 to-white pb-4 pt-1 rounded-3xl">
             <div className="w-[96%] mx-auto bg-white rounded-2xl p-6 border-1 border-gray-300 shadow-md">
-            <div className="flex gap-2 items-center mb-2">
+            <div className="flex gap-2 items-center mb-2 flex-wrap">
                 <FaStar className="bg-green-600 text-white text-xl rounded-full p-1" />
                 <span className="font-semibold">{avgRating}</span>
                 <span className="font-semibold">({totalRatingsString})</span>
