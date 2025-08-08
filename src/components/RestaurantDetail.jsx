@@ -4,6 +4,8 @@ import { RESTAURANT_DETAIL_API_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import RestaurantDetailHero from "./RestaurantDetailHero";
 import RestaurantDetailOffers from "./RestaurantDetailOffers";
+import RestaurantDetailMenuItems from "./RestaurantDetailMenuItems";
+import RestaurantDetailMenuItemsDivider from "./RestaurantDetailMenuItemsDivider";
 
 const RestaurantDetail = () => {
     const { restaurantId } = useParams();
@@ -21,12 +23,19 @@ const RestaurantDetail = () => {
     }, [])
 
     if (restaurantData.length == 0) return  <Shimmer />;
+    // // let res = restaurantData?.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter((restro) => restro.card.card?.carousel[0]?.type == "TopCarousel" );
+    console.log(restaurantData?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card)
+    // const recommended = restaurantData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
 
     return (
         <div className="w-[95%] sm:w-2/5 mx-auto my-10">
             <RestaurantDetailHero name={restaurantData?.data?.cards[0]?.card?.card?.text} restaurantData={restaurantData?.data?.cards[2]?.card?.card?.info} />
 
             <RestaurantDetailOffers offers={restaurantData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers}/>
+
+            <RestaurantDetailMenuItemsDivider />
+            <RestaurantDetailMenuItems menuItems={restaurantData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card} />
+            <RestaurantDetailMenuItemsDivider />
         </div>
     )
 }
