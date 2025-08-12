@@ -38,19 +38,14 @@ const RestaurantDetail = () => {
 
             <RestaurantDetailOffers offers={restaurantData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers}/>
             
-            
-            <RestaurantDetailMenuItemsDivider />
-            <RestaurantDetailMenuItems items={menuItems[2]} handleAccordion={handleAccordion} />
-
-            <RestaurantDetailMenuItemsDivider />
-            <RestaurantDetailMenuItems items={menuItems[3]} handleAccordion={handleAccordion} />
-            
-            <RestaurantDetailMenuItemsDivider />
-            <RestaurantDetailMenuItems items={menuItems[4]} handleAccordion={handleAccordion} />
-            <RestaurantDetailMenuItemsDivider />
-            
-            <RestaurantDetailMenuItems items={menuItems[5]} handleAccordion={handleAccordion} />
-            <RestaurantDetailMenuItemsDivider />
+            {
+                menuItems.map((item) => (
+                    <>
+                        <RestaurantDetailMenuItemsDivider />
+                        <RestaurantDetailMenuItems items={item} handleAccordion={handleAccordion} />
+                    </>
+                ) )
+            }
         </div>
     )
 }

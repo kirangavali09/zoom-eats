@@ -29,3 +29,15 @@
   }
 }
 
+/* in your global CSS file (e.g., globals.css or app.css) */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+  }
+}
+
