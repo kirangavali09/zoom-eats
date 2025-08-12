@@ -26,8 +26,7 @@ const RestaurantContainer = () => {
     const handleFilter = (filteredData, searchQuery) => {
         setFilteredRestaurants(filteredData);
         setSearchQuery(searchQuery)
-    }  
-    console.log(RestaurantData);
+    }
 
     return (
         <>

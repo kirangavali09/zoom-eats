@@ -10,12 +10,14 @@ import RestaurantDetailMenuItemsDivider from "./RestaurantDetailMenuItemsDivider
 const RestaurantDetail = () => {
     const { restaurantId } = useParams();
     const [ restaurantData, setRestaurantData] = useState([]);
+    const [ menuItems, setMenuItems] = useState([]);
 
     const fetchRestaurantData = async () => {
         let restaurantData = await fetch(RESTAURANT_DETAIL_API_URL + restaurantId)
         let restaurantJson = await restaurantData.json();
 
-        setRestaurantData(restaurantJson); 
+        setRestaurantData(restaurantJson);
+        setMenuItems(restaurantJson?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.map((card) => ({ ...card, active: false }))); 
     }
 
     useEffect(() => {
@@ -23,18 +25,31 @@ const RestaurantDetail = () => {
     }, [])
 
     if (restaurantData.length == 0) return  <Shimmer />;
-    // // let res = restaurantData?.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter((restro) => restro.card.card?.carousel[0]?.type == "TopCarousel" );
-    console.log(restaurantData?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card)
-    // const recommended = restaurantData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+
+    const handleAccordion = (categoryId) => {
+        setMenuItems((prev)=> {
+        return prev.map((item) => ({ ...item, active: (item.card.card.categoryId == categoryId ? !item.active : false)})) 
+        });
+    }
 
     return (
         <div className="w-[95%] sm:w-2/5 mx-auto my-10">
             <RestaurantDetailHero name={restaurantData?.data?.cards[0]?.card?.card?.text} restaurantData={restaurantData?.data?.cards[2]?.card?.card?.info} />
 
             <RestaurantDetailOffers offers={restaurantData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers}/>
+            
+            
+            <RestaurantDetailMenuItemsDivider />
+            <RestaurantDetailMenuItems items={menuItems[2]} handleAccordion={handleAccordion} />
 
             <RestaurantDetailMenuItemsDivider />
-            <RestaurantDetailMenuItems menuItems={restaurantData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card} />
+            <RestaurantDetailMenuItems items={menuItems[3]} handleAccordion={handleAccordion} />
+            
+            <RestaurantDetailMenuItemsDivider />
+            <RestaurantDetailMenuItems items={menuItems[4]} handleAccordion={handleAccordion} />
+            <RestaurantDetailMenuItemsDivider />
+            
+            <RestaurantDetailMenuItems items={menuItems[5]} handleAccordion={handleAccordion} />
             <RestaurantDetailMenuItemsDivider />
         </div>
     )
