@@ -19,17 +19,15 @@ const RestaurantContainer = () => {
         let restaurants = await fetch(RESTAURANT_API_URL);
 
         let restaurantJson = await restaurants.json();
-
-        let restaurantsData = restaurantJson?.data?.cards.filter((res) => res?.card?.card?.id == "restaurant_grid_listing_v2" )
-
-        setRestaurantData(restaurantsData[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestaurants(restaurantsData[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setRestaurantData(restaurantJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurants(restaurantJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
 
     const handleFilter = (filteredData, searchQuery) => {
         setFilteredRestaurants(filteredData);
         setSearchQuery(searchQuery)
     }  
+    console.log(RestaurantData);
 
     return (
         <>
