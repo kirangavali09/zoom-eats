@@ -6,7 +6,7 @@ const RestaurantDetailMenuItems = ({items, handleAccordion}) => {
     const menuItems = items?.card?.card;
 
     return (
-        <div>
+        <div className="my-6">
             <div className="cursor-pointer" onClick={() => handleAccordion(menuItems.categoryId)}>
                 <div className="font-semibold text-lg flex items-center justify-between px-2">
                     <span>
