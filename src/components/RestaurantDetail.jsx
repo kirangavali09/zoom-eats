@@ -39,7 +39,8 @@ const RestaurantDetail = () => {
             <RestaurantDetailOffers offers={restaurantData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers}/>
             
             {
-                menuItems.map((item) => (
+                menuItems.filter((item) => item?.card?.card?.itemCards?.length > 0)
+                .map((item) => (
                     <>
                         <RestaurantDetailMenuItemsDivider />
                         <RestaurantDetailMenuItems items={item} handleAccordion={handleAccordion} />

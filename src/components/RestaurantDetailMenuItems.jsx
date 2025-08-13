@@ -6,7 +6,7 @@ const RestaurantDetailMenuItems = ({items, handleAccordion}) => {
     const menuItems = items?.card?.card;
 
     return (
-        <div className={`transition-all duration-200 no-scrollbar ${active ? 'max-h-screen overflow-auto' : 'max-h-8 overflow-hidden'}`}>
+        <div>
             <div className="cursor-pointer" onClick={() => handleAccordion(menuItems.categoryId)}>
                 <div className="font-semibold text-lg flex items-center justify-between px-2">
                     <span>
@@ -15,7 +15,7 @@ const RestaurantDetailMenuItems = ({items, handleAccordion}) => {
                     <IoIosArrowDown className="text-2xl cursor-pointer"/>
                 </div>
             </div>
-            <div className={`px-2`}> {
+            <div className={`px-2 ${active ? 'block' : 'hidden'}`}> {
                 menuItems?.itemCards?.map((item) => (
                     <div key={item.card.info.id} className={`flex justify-between my-4 border-b-1 border-gray-400 py-4`}>
                         <div className="w-3/4">
