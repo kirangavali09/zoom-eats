@@ -6,28 +6,66 @@ import RestaurantDetailHero from "./RestaurantDetailHero";
 import RestaurantDetailOffers from "./RestaurantDetailOffers";
 import RestaurantDetailMenuItems from "./RestaurantDetailMenuItems";
 import RestaurantDetailMenuItemsDivider from "./RestaurantDetailMenuItemsDivider";
+import ToggleMenu from "./ToggleMenu";
 
 const RestaurantDetail = () => {
   const { restaurantId } = useParams();
   const [restaurantData, setRestaurantData] = useState([]);
   const [menuItems, setMenuItems] = useState([]);
-  const [vegOnly, setVegOnly] = useState(false);
+  const [allMenuItems, setAllMenuItems] = useState([]);
+  const [vegFilter, setVegFilter] = useState(false);
+  const [nonVegFilter, setNonVegFilter] = useState(false);
+  
 
   const fetchRestaurantData = async () => {
     let restaurantData = await fetch(RESTAURANT_DETAIL_API_URL + restaurantId);
     let restaurantJson = await restaurantData.json();
 
     setRestaurantData(restaurantJson);
-    setMenuItems(
-      restaurantJson?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.map(
-        (card) => ({ ...card, active: false })
-      )
+	let menuItems = restaurantJson?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter((item) => item?.card?.card?.itemCards?.length > 0);
+    const menuItemsWithActive = menuItems.map(
+      (card) => ({ ...card, active: false })
     );
+    setMenuItems(menuItemsWithActive);
+    setAllMenuItems(menuItemsWithActive);
   };
 
   useEffect(() => {
     fetchRestaurantData();
   }, []);
+
+  useEffect(() => {
+    if (!vegFilter && !nonVegFilter) {
+      setMenuItems(allMenuItems);
+    } else {
+      const filteredItems = allMenuItems.map((item) => {
+        const filteredItemCards = item?.card?.card?.itemCards?.filter(
+          (cardItem) => {
+            const isVegItem = cardItem?.card?.info?.isVeg === 1;
+            if (vegFilter && !nonVegFilter) {
+              return isVegItem;
+            } else if (!vegFilter && nonVegFilter) {
+              return !isVegItem;
+            } else {
+              return true;
+            }
+          }
+        );
+        return {
+          ...item,
+          card: {
+            ...item.card,
+            card: {
+              ...item.card.card,
+              itemCards: filteredItemCards
+            }
+          }
+        };
+      }).filter(item => item?.card?.card?.itemCards?.length > 0);
+      
+      setMenuItems(filteredItems);
+    }
+  }, [vegFilter, nonVegFilter, allMenuItems]);
 
   if (restaurantData.length == 0) return <Shimmer />;
 
@@ -39,6 +77,14 @@ const RestaurantDetail = () => {
       }));
     });
   };
+
+  const handleFilter = (isVeg) => {
+    if (isVeg) {
+      setVegFilter(!vegFilter);
+    } else {
+      setNonVegFilter(!nonVegFilter);
+    }
+  }
 
   return (
     <div className="w-[95%] sm:w-2/5 mx-auto my-10">
@@ -55,33 +101,18 @@ const RestaurantDetail = () => {
       />
 
       <div className="flex gap-4 my-8">
-        <div className="w-22 h-10 rounded-3xl border-1 flex items-center justify-center ">
-          <div
-            className={`transition-all duration-200 ease-in-out ${
-              vegOnly ? "bg-green-400" : "bg-gray-300"
-            } p-2 w-14 h-4 rounded-3xl relative`}
-          >
-            <div
-              className={`transition-all duration-200 ease-in-out cursor-pointer absolute w-6 h-6 border-2 border-green-600 bg-white rounded-md bottom-[-4px] ${
-                vegOnly ? "right-0" : "right-10"
-              }  flex items-center justify-center`}
-              onClick={() => setVegOnly(!vegOnly)}
-            >
-              <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-            </div>
-          </div>
-        </div>
+		  <ToggleMenu color="green" handleFilter={handleFilter} isVeg={true} isActive={vegFilter} />
+		  <ToggleMenu color="red" handleFilter={handleFilter} isVeg={false} isActive={nonVegFilter} />
       </div>
       {menuItems
-        .filter((item) => item?.card?.card?.itemCards?.length > 0)
-        .map((item) => (
-          <>
+        .map((item, index) => (
+          <div key={index}>
             <RestaurantDetailMenuItems
               items={item}
               handleAccordion={handleAccordion}
             />
             <RestaurantDetailMenuItemsDivider />
-          </>
+          </div>
         ))}
     </div>
   );
