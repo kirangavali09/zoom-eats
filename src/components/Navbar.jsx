@@ -17,7 +17,7 @@ const Navbar = () => {
             <div className='flex gap-4 items-center max-sm:hidden'>
                 <NavLink to="/" className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>Home</NavLink>
                 <NavLink to="/about" className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>About</NavLink>
-                <NavLink className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>Contact Us</NavLink>
+                <NavLink to="/contact" className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>Contact Us</NavLink>
                 <NavLink className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>Cart</NavLink>
                 <NavLink className='px-3 py-1 text-xl bg-slate-400 cursor-pointer text-white rounded-md' onClick={() => setIsLoggedIn(!isLoggedIn)}>{ isLoggedIn ? "Logout" : "Login" }</NavLink>
                 <NavLink >{isOnline ? "Online" : "Offline" }</NavLink>
