@@ -3,7 +3,6 @@ import RestaurantContainer from "./RestaurantContainer";
 import RestaurantDetail from "./RestaurantDetail";
 import AboutClass from "./AboutClass";
 import { lazy, Suspense } from "react";
-import Cart from "./Cart";
 const Contact = lazy(() => import("./Contact"));
 
 const Routing = () => {
@@ -20,7 +19,6 @@ const Routing = () => {
                     </Suspense>
                 }
             />
-            <Route path="/cart" element={<Cart />} />
         </Routes>
     )
 }
