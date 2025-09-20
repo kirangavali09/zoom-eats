@@ -20,8 +20,9 @@ const RestaurantContainer = () => {
         let restaurants = await fetch(RESTAURANT_API_URL);
 
         let restaurantJson = await restaurants.json();
-        setRestaurantData(restaurantJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestaurants(restaurantJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        let filteredRestaurants = restaurantJson.data.cards.filter((res) => res.card.card.id == "restaurant_grid_listing_v2");
+        setRestaurantData(filteredRestaurants[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurants(filteredRestaurants[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
 
     const handleFilter = (filteredData, searchQuery) => {
@@ -47,8 +48,8 @@ const RestaurantContainer = () => {
                             <OpenedRestaurantCard restaurantData={restaurant.info} />
                         </Link>
 
-                    : <Link to={"/restaurant/"+restaurant.info.id} key={restaurant.info.id}>
-                        {console.log(restaurant)}
+                    : 
+                    <Link to={"/restaurant/"+restaurant.info.id} key={restaurant.info.id}>
                         <RestaurantCard
                         key={restaurant.info.id}
                         restaurantData={restaurant.info}
