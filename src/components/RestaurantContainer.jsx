@@ -41,15 +41,15 @@ const RestaurantContainer = () => {
                         </div>
                     )
             : (
-                <div className="w-full px-4 sm:px-12 lg:px-32 flex flex-wrap justify-start gap-10 mt-4">
+                <div className="w-10/12 lg:w-11/12 mx-auto flex flex-wrap gap-4 md:gap-12 lg:gap-6 xl:gap-12 mt-4">
                 {filteredRestaurants.map((restaurant) => {
                     return restaurant.info.isOpen ? 
-                        <Link to={"/restaurant/"+restaurant.info.id} key={restaurant.info.id}>
+                        <Link to={"/restaurant/"+restaurant.info.id} key={restaurant.info.id} className="max-sm:w-full">
                             <OpenedRestaurantCard restaurantData={restaurant.info} />
                         </Link>
 
                     : 
-                    <Link to={"/restaurant/"+restaurant.info.id} key={restaurant.info.id}>
+                    <Link to={"/restaurant/"+restaurant.info.id} key={restaurant.info.id} className="max-sm:w-full">
                         <RestaurantCard
                         key={restaurant.info.id}
                         restaurantData={restaurant.info}
