@@ -19,8 +19,8 @@ const Cart = () => {
             <div className="font-bold text-2xl text-center pt-12">Cart</div>
             {
                 cartItems.length == 0 ? <div className="my-10 text-xl text-center">😔 Oops... nothing here yet! Add items to your cart 🛍️</div> :
-                <div className="w-8/12 mx-auto p-4 flex flex-wrap">
-                    <div className={`px-2 lg:px-10 w-8/12 border-r-1 border-gray-300`}> {
+                <div className="w-full lg:w-8/12 mx-auto p-4 flex flex-wrap">
+                    <div className={`px-2 lg:px-10 lg:w-8/12 lg:border-r-1 border-gray-300`}> {
                         cartItems?.map((item, index) => (
                             <div key={index} className={`flex justify-between mb-4 border-b-1 border-gray-400 py-4 relative`}>
                                 <div className="w-3/4">
@@ -44,7 +44,7 @@ const Cart = () => {
                         ))
                     }
                     </div>
-                    <div className="w-4/12 px-4 lg:px-10">
+                    <div className="w-full lg:w-4/12 px-4 lg:px-10">
                         <h1 className="text-lg uppercase font-semibold pb-2 border-b-3 border-gray-300">Cart Total</h1>
                         <div className="pb-2 pt-3 flex justify-between border-b-1 border-gray-300">
                             <span className="text-gray-700">Subtotal</span>
