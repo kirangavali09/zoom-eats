@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 import RestaurantContainer from "./RestaurantContainer";
 import RestaurantDetail from "./RestaurantDetail";
-import AboutClass from "./AboutClass";
 import { lazy, Suspense } from "react";
 import Cart from "./Cart";
 const Contact = lazy(() => import("./Contact"));

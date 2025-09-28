@@ -18,7 +18,6 @@ const Navbar = () => {
             </Link>
             <div className='flex gap-4 items-center max-lg:hidden'>
                 <NavLink to="/" className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>Home</NavLink>
-                <NavLink to="/about" className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>About</NavLink>
                 <NavLink to="/contact" className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>Contact Us</NavLink>
                 <NavLink to="/cart" className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>
                     Cart ({cartItems.length})

@@ -15,7 +15,7 @@ const Cart = () => {
         dispatch(removeItem(itemId))
     }
     return (
-        <>
+        <div className="w-full  h-[calc(100vh_-_37vh)]">
             <div className="font-bold text-2xl text-center pt-12">Cart</div>
             {
                 cartItems.length == 0 ? <div className="my-10 text-xl text-center">😔 Oops... nothing here yet! Add items to your cart 🛍️</div> :
@@ -62,7 +62,7 @@ const Cart = () => {
                     </div>
                 </div>
             }
-        </>
+        </div>
     )
 }
 
