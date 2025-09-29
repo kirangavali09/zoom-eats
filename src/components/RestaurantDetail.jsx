@@ -1,15 +1,15 @@
-import Shimmer from "./Shimmer";
 import RestaurantDetailHero from "./RestaurantDetailHero";
 import RestaurantDetailOffers from "./RestaurantDetailOffers";
 import RestaurantDetailMenuItems from "./RestaurantDetailMenuItems";
 import RestaurantDetailMenuItemsDivider from "./RestaurantDetailMenuItemsDivider";
 import ToggleMenu from "./ToggleMenu";
 import useRestaurantDetailData from "../utils/useRestaurantDetailData";
+import RestaurantDetailShimmer from "./RestaurantDetailShimmer";
 
 const RestaurantDetail = () => {
     const [restaurantData, menuItems, handleFilter, handleAccordion,vegFilter, nonVegFilter] = useRestaurantDetailData();
 
-    if (restaurantData.length == 0) return <Shimmer />;
+    if (restaurantData.length == 0) return <RestaurantDetailShimmer />;
 
     return (
         <div className="w-[95%] sm:w-2/5 mx-auto my-10">
