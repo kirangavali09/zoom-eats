@@ -20,7 +20,7 @@ const Navbar = () => {
                 <NavLink to="/" className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>Home</NavLink>
                 <NavLink to="/contact" className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>Contact Us</NavLink>
                 <NavLink to="/cart" className='font-bold text-xl uppercase text-zinc-900 cursor-pointer'>
-                    Cart ({cartItems.length})
+                    Cart ({cartItems.reduce((acc, item) => acc + item.qty ,0)})
                 </NavLink>
                 <NavLink className='px-3 py-1 text-xl bg-slate-400 cursor-pointer text-white rounded-md' onClick={() => setIsLoggedIn(!isLoggedIn)}>{ isLoggedIn ? "Logout" : "Login" }</NavLink>
                 {/* <NavLink >{isOnline ? "Online" : "Offline" }</NavLink> */}

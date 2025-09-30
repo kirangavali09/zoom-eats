@@ -8,15 +8,31 @@ const RestaurantDetailMenuItems = ({items, handleAccordion}) => {
     const menuItems = items?.card?.card;
 
     const dispatch = useDispatch();
-    const handleAddTocart = (item) => {
-        dispatch(addItem(item));
-    }
-
-    const handleRemoveCart = (itemId) => {
-        dispatch(removeItem(itemId))
-    }
-
     const cartItems = useSelector((store) => store.cart.items);
+
+    const handleAddTocart = (item) => {
+        let cartItem = cartItems.filter((cartItem) => cartItem.card?.info.id == item.card?.info.id );
+        if(cartItem.length > 0) {
+            dispatch(removeItem(item.card?.info.id))
+            const ItemWithQty = { ...item, qty: cartItem[0].qty + 1 };
+            dispatch(addItem(ItemWithQty));
+        } else 
+        {
+            const ItemWithQty = { ...item, qty: 1 };
+            dispatch(addItem(ItemWithQty));
+        }
+    }
+
+    const handleRemoveCart = (item) => {
+        const quantity = cartItems.reduce((acc, cartItem) => cartItem.card?.info.id == item.card?.info.id ? acc + cartItem.qty : acc, 0)
+        if(quantity > 1){
+            const ItemWithQty = { ...item, qty: quantity - 1};
+            dispatch(removeItem(item.card?.info.id))
+            dispatch(addItem(ItemWithQty));
+        } else {
+            dispatch(removeItem(item.card?.info.id))
+        }
+    }
 
     return (
         <div className="my-6">
@@ -43,16 +59,22 @@ const RestaurantDetailMenuItems = ({items, handleAccordion}) => {
                                 {item.card.info.description}
                             </div>
                         </div>
-                        <div className="w-32 h-32 relative">
+                        <div className="w-36 h-32 relative">
                             <img src={MENU_ITEM_MEDIA_URL+item.card.info.imageId} className="w-full h-full object-cover rounded-lg"/>
-                            <button className={`absolute px-5 py-1 rounded-md bg-white shadow-2xl text-green-600 -bottom-5 left-6 font-bold cursor-pointer z-30 ${item.card.info.id} ${
+                            <button className={`absolute w-24 py-1 left-1/2 -translate-x-1/2 rounded-md bg-white shadow-2xl text-green-600 -bottom-5 font-bold cursor-pointer z-30 ${item.card.info.id} ${
                                 cartItems.filter((cartItem) => cartItem.card.info.id == item.card.info.id).length > 0 ? "hidden" : " "
                             }`}
                             onClick={() => handleAddTocart(item)}>ADD</button>
-                            <button className={`absolute px-5 py-1 rounded-md bg-white shadow-2xl text-zinc-900 -bottom-5 left-6 font-bold cursor-pointer z-30 ${
-                                cartItems.filter((cartItem) => cartItem.card.info.id == item.card.info.id).length > 0 ? " " : "hidden"
-                            }`}
-                            onClick={() => handleRemoveCart(item.card.info.id)}>ADDED</button>
+                            <button className={`border-1 w-24 py-1 left-1/2 -translate-x-1/2 border-gray-200 absolute rounded-md bg-white shadow-2xl text-zinc-900 -bottom-5 font-bold cursor-pointer z-30 flex
+                            ${ cartItems.filter((cartItem) => cartItem.card.info.id == item.card.info.id).length > 0 ? " " : "hidden"}`}
+                            >
+                                <div className="border-r-1 border-gray-200 w-4/12 py-1 text-green-800" onClick={() => handleAddTocart(item)}>+</div>
+                                <div className="w-4/12 py-1 text-center text-green-800">{
+                                    cartItems.reduce((acc, cartItem) => cartItem.card?.info.id == item.card?.info.id ? acc + cartItem.qty : acc, 0)
+                                }</div>
+                                <div className="border-l-1 border-gray-200 w-4/12 py-1 text-green-800"
+                                onClick={() => handleRemoveCart(item)}>-</div>
+                            </button>
                         </div>
                     </div>
                 ))

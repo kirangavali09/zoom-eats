@@ -5,8 +5,8 @@ import { removeItem } from "../reducers/cartSlice";
 const Cart = () => {
     const cartItems = useSelector((store) =>store.cart.items);
     const subTotal = cartItems.reduce((total, item) => {
-                           return item.card.info.defaultPrice ? (item.card.info.defaultPrice/100 + total) : (item.card.info.price ? 
-                                (item.card.info.price/100 + total) : (item.card.info.finalPrice ? item.card.info.finalPrice/100 + total : total)
+                           return item.card.info.defaultPrice ? ((item.card.info.defaultPrice/100) * item.qty + total) : (item.card.info.price ? 
+                                ((item.card.info.price/100) * item.qty + total) : (item.card.info.finalPrice ? (item.card.info.finalPrice/100) * item.qty + total : total)
                             )
                         }, 0)
 
@@ -15,7 +15,7 @@ const Cart = () => {
         dispatch(removeItem(itemId))
     }
     return (
-        <div className="w-full  h-[calc(100vh_-_37vh)]">
+        <div className="w-full  min-h-[calc(100vh_-_37vh)]">
             <div className="font-bold text-2xl text-center pt-12">Cart</div>
             {
                 cartItems.length == 0 ? <div className="my-10 text-xl text-center">😔 Oops... nothing here yet! Add items to your cart 🛍️</div> :
