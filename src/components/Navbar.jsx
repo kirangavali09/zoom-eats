@@ -39,19 +39,19 @@ const Navbar = () => {
                 <NavLink to="/sign-in" className={`font-bold text-xl text-zinc-800 cursor-pointer
                     ${authUser?.uid ? 'hidden' : '' }`}>Sign In</NavLink>
                 
-                <NavLink
+                <div
                     className={`font-bold text-xl text-zinc-800 cursor-pointer relative py-2
                         ${authUser?.uid ? '' : 'hidden' }`}
                     onMouseEnter={() => setShowSignOut(true)}
                     onMouseLeave={() => setShowSignOut(false)}
                 >
-                    {authUser?.uid.split("@")[0]}
+                    {authUser?.uid?.split("@")[0]?.charAt(0)?.toUpperCase() + authUser?.uid?.split("@")[0]?.slice(1)}
                     {showSignOut && (
-                        <div onClick={handleSignOut} className='absolute w-24 py-1 px-2 bg-white shadow-2xl text-zinc-900 text-md rounded-md top-10 right-0.5 text-center'>
+                        <div onClick={handleSignOut} className='absolute w-24 py-1 px-2 bg-white shadow-2xl text-zinc-900 text-lg rounded-md top-10 right-0.5 text-center'>
                             Sign out
                         </div>
                     )}
-                </NavLink>
+                </div>
                 {/* <NavLink >{isOnline ? "Online" : "Offline" }</NavLink> */}
             </div>
             <div className='lg:hidden flex items-center text-2xl'>

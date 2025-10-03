@@ -36,7 +36,7 @@ const RestaurantContainer = () => {
             <Search RestaurantData={RestaurantData} handleFilter={handleFilter} />
             {filteredRestaurants == undefined || filteredRestaurants?.length === 0 ? 
                     searchQuery == null ? <Shimmer /> : (
-                        <div className="w-full px-4 sm:px-12 lg:px-32 flex flex-wrap justify-start gap-10 mt-4">
+                        <div className="w-full min-h-[calc(100vh_-_37vh)] px-4 sm:px-12 lg:px-32 flex flex-wrap justify-start gap-10 mt-4">
                             No Restaurants Found
                         </div>
                     )
