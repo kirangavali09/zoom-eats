@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { MENU_ITEM_MEDIA_URL } from "../utils/constants";
 import { removeItem } from "../reducers/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
     const cartItems = useSelector((store) =>store.cart.items);
@@ -8,11 +9,20 @@ const Cart = () => {
                            return item.card.info.defaultPrice ? ((item.card.info.defaultPrice/100) * item.qty + total) : (item.card.info.price ? 
                                 ((item.card.info.price/100) * item.qty + total) : (item.card.info.finalPrice ? (item.card.info.finalPrice/100) * item.qty + total : total)
                             )
-                        }, 0)
+                        }, 0);
+    const user = useSelector((store) => store.auth.userInfo[0]);
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const removeCartItem = (itemId) => {
         dispatch(removeItem(itemId))
+    }
+
+    const handlePayment = () => {
+        if(!user?.uid) {
+            navigate('/sign-in');
+        }
+        
     }
     return (
         <div className="w-full  min-h-[calc(100vh_-_37vh)]">
@@ -58,7 +68,8 @@ const Cart = () => {
                             <span className="text-gray-700">Total</span>
                             <span>₹ { (subTotal + 60).toFixed(2) }</span>
                         </div>
-                        <button className="w-full py-1 my-4 rounded-md bg-yellow-500 text-white font-semibold uppercase text-md cursor-pointer">Proceed to Checkout</button>
+                        <button onClick={handlePayment} 
+                            className="w-full py-1 my-4 rounded-md bg-yellow-500 text-white font-semibold uppercase text-md cursor-pointer">Proceed to Checkout</button>
                     </div>
                 </div>
             }

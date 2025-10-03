@@ -12,11 +12,7 @@ const Routing = () => {
     return (
         <Routes>
             <Route path="/" element={<RestaurantContainer />} />
-            <Route path="restaurant/:restaurantId" element={
-                <AuthMiddleware>
-                    <RestaurantDetail />
-                </AuthMiddleware>
-            } />
+            <Route path="restaurant/:restaurantId" element={<RestaurantDetail />} />
             <Route
                 path="/contact"
                 element={
