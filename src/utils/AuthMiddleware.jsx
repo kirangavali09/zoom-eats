@@ -7,9 +7,9 @@ const AuthMiddleware = ({children}) => {
     const user = useSelector((store) => store.auth.userInfo[0]);
 
     useEffect(() => {
-        if(user?.uid && children.type.name == 'SignIn'){
+        if(user?.uid && (children.type.name == 'SignIn' || children.type.name == 'SignUp')){
             navigate('/');
-        } else if(!user?.uid) {
+        } else if(!user?.uid && children.type.name !== 'SignUp') {
             navigate('/sign-in')
         }
     },[children.type.name, user?.uid])

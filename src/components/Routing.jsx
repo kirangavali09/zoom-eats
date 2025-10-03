@@ -5,6 +5,7 @@ import { lazy, Suspense } from "react";
 import Cart from "./Cart";
 import SignIn from "./Pages/SignIn";
 import AuthMiddleware from "../utils/authMiddleWare";
+import SignUp from "./Pages/SignUp";
 const Contact = lazy(() => import("./Contact"));
 
 const Routing = () => {
@@ -25,6 +26,11 @@ const Routing = () => {
             <Route path="/sign-in" element={
                 <AuthMiddleware>
                     <SignIn />
+                </AuthMiddleware>
+            } />
+            <Route path="/sign-up" element={
+                <AuthMiddleware>
+                    <SignUp />
                 </AuthMiddleware>
             } />
         </Routes>

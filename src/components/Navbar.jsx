@@ -13,6 +13,7 @@ const Navbar = () => {
     const isOnline = useActiveStatus();
     const cartItems = useSelector((store) => store.cart.items)
     const authUser = useSelector((store) => store.auth.userInfo[0]);
+
     const navigate = useNavigate();
     const handleSignOut = () => {
         const auth = getAuth(FIREBASE_APP);
@@ -45,7 +46,7 @@ const Navbar = () => {
                     onMouseEnter={() => setShowSignOut(true)}
                     onMouseLeave={() => setShowSignOut(false)}
                 >
-                    {authUser?.uid?.split("@")[0]?.charAt(0)?.toUpperCase() + authUser?.uid?.split("@")[0]?.slice(1)}
+                    {authUser?.displayName}
                     {showSignOut && (
                         <div onClick={handleSignOut} className='absolute w-24 py-1 px-2 bg-white shadow-2xl text-zinc-900 text-lg rounded-md top-10 right-0.5 text-center'>
                             Sign out

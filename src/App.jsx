@@ -4,7 +4,7 @@ import Routing from './components/Routing'
 import Footer from './components/Footer'
 import { useEffect } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { removeUserInfo, storeUserInfo } from './reducers/authSlice'
 import { FIREBASE_APP } from './utils/firebaseAuth'
 
