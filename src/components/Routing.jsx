@@ -5,7 +5,7 @@ import { lazy, Suspense } from "react";
 import Cart from "./Cart";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
-import AuthMiddleware from "../utils/authMiddleware";
+import AuthMiddleware from "../utils/authMiddleWare";
 const Contact = lazy(() => import("./Contact"));
 
 const Routing = () => {
