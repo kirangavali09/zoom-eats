@@ -29,9 +29,9 @@ const Routing = () => {
                 </AuthMiddleware>
             } />
             <Route path="/sign-up" element={
-                <AuthMiddleware>
+                // <AuthMiddleware>
                     <SignUp />
-                </AuthMiddleware>
+                // </AuthMiddleware>
             } />
         </Routes>
     )
