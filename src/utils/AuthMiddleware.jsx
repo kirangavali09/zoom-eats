@@ -6,6 +6,7 @@ const AuthMiddleware = ({children}) => {
     const navigate = useNavigate();
     const user = useSelector((store) => store.auth.userInfo[0]);
 
+    
     useEffect(() => {
         if(user?.uid && (children.type.name == 'SignIn' || children.type.name == 'SignUp')){
             navigate('/');
